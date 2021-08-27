@@ -42,7 +42,6 @@ export default function Signup(props) {
             let lng = position?.coords?.longitude;
             console.log(lat, lng);
             fetchLocation(lat, lng);
-            
         }
         function errorCb(error) {
             console.log(error);
