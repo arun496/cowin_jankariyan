@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Link } from "react-router-dom";
 import { AuthContext } from '../Contexts/AuthProvider';
 import axios from "axios";
-import { API_KEY } from '../../secrets';
+import { API_KEY } from '../secrets.js';
 
 export default function Signup(props) {
     const [username, setUsername] = useState("");

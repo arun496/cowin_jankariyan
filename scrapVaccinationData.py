@@ -14,10 +14,9 @@ def scrapVaccinationData(pincode):
     try:
         # For headless
         # Initialize chrome instance
-        # options = Options()
-        # options.headless = True
-        # driver = webdriver.Chrome(options=options)
-        driver = webdriver.Chrome()
+        options = Options()
+        options.headless = True
+        driver = webdriver.Chrome(options=options)
         targetURL = "https://www.cowin.gov.in/#Search-Vaccination-Center"
         driver.maximize_window()
         driver.get(targetURL)
