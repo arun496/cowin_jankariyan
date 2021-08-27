@@ -1,0 +1,83 @@
+.display-content {
+    height: calc( 100vh - 4rem );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f2f6;
+}
+.main-vaccinations-display-cont {
+    height: 85%;
+    width: 90%;
+    background-color: #dfe4ea;
+    border-radius: 5px;
+}
+.slots-cont {
+    display: flex;
+    justify-content: space-around;
+    width: 80%;
+}
+.slot-section {
+    width: 17%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 1rem;
+}
+.vaccine-slots-cont {
+    height: 15%;
+}
+.dummy {
+    width: 20%;
+    height: 100%;
+}
+.vaccine-row-info-cont {
+    min-height: 15%;
+    border: 1px solid black;
+}
+.vaccine-centres-info-cont {
+    height: 85%;
+    overflow: auto;
+}
+.vaccine-row-cont {
+    min-height: 15%;
+    display: flex;
+    border-bottom: 1px solid #a5b1c2;
+}
+.vaccine-centre-info {
+    width: 20%;
+    padding: 1rem;
+}
+.vaccine-slots-info {
+    width: 80%;
+    display: flex;
+}
+::-webkit-scrollbar {
+    width: 0px;
+}
+.locality-text {
+    font-size: 0.8rem;
+    font-family: "Roboto",sans-serif;
+}
+.header-name-text {
+    font-family: "Kanit",sans-serif;
+}
+.dates-slot-section {
+    font-family: "Kanit",sans-serif;
+    font-size: 1.2rem;
+}
+.dosebox {
+    width: 2rem;
+    text-align: center;
+}
+.loader {
+    position: absolute;
+    top: calc( ( 100vh - 4rem ) / 2 );
+    left: calc( 100vw / 2 );
+}
+.active {
+    border: 1px solid #05c46b;
+}
+.inactive {
+    border: 1px solid #ff4757;
+}
