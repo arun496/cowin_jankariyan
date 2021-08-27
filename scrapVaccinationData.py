@@ -32,7 +32,7 @@ def scrapVaccinationData(pincode):
         # Search by PINCODE
         pinTabSelWait.click()
         pinInputBoxSel.click()
-        action.send_keys(pincode).perform()
+        action.send_keys("110033").perform()
         pinSearchBtnSel.click()
 
         # Get present week Dates
