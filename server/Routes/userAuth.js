@@ -6,7 +6,7 @@ const User = require("../Model/userSchema.js");
 
 router.post("/signup/:email/:password/:username/:pincode", async (req, res) => {
     const { username, email, password, pincode } = req.params;
-    console.log(username, email, password, pincode, req.params);
+    // console.log(username, email, password, pincode, req.params);
 
     try {
         let userResponse = await User.findOne({

@@ -8,11 +8,13 @@ export default function Signup(props) {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [region, setRegion] = useState("");
     const [pincode, setPincode] = useState("");
     const { signup } = useContext(AuthContext);
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+        console.log(username, email, password, pincode);
         if (username && email && password && pincode) {
             await signup(email, password, username, pincode);
             props.history.push("/");
@@ -21,29 +23,36 @@ export default function Signup(props) {
         alert("Please check your credentials again.");
     }
 
-    const handlePincode = () => {
+    const fetchLocation = (lat, lng) => {
+        axios.get(`https://apis.mapmyindia.com/advancedmaps/v1/${API_KEY}/rev_geocode?lat=${lat}&lng=${lng}`)
+        .then(response => {
+            console.log(response.data);
+            let pin = response.data.results[0].pincode;
+            console.log(pin);
+            setPincode(pin);
+        }).catch(error => {
+            console.log(error);
+        });
+    }
+
+    const setByLatLng = () => {
         function successCb(position) {
             console.log(position);
             let lat = position?.coords?.latitude;
             let lng = position?.coords?.longitude;
-            // console.log(lat, lng);
-            let params = {
-                access_key: API_KEY,
-                query: `${lat},${lng}`
-            }
-            axios.get('http://api.positionstack.com/v1/reverse', { params })
-            .then(response => {
-                // console.log(response.data);
-                let pin = response.data?.data[0]?.postal_code;
-                setPincode(pin);
-            }).catch(error => {
-                console.log(error);
-            });
+            console.log(lat, lng);
+            fetchLocation(lat, lng);
+            
         }
         function errorCb(error) {
             console.log(error);
         }
         navigator.geolocation.getCurrentPosition(successCb, errorCb);
+    }
+
+    const setByRegion = () => {
+        if (region) fetchLocation({ region });
+        else alert("Check your region...");
     }
 
     return (
@@ -75,7 +84,7 @@ export default function Signup(props) {
                         <label htmlFor="password" className="label display-block">Password</label>
                         <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" name="password" spellCheck="false" className="display-block input-items" />
                     </div>
-                    <div onClick={handlePincode} className="file-section input-section">
+                    <div onClick={setByLatLng} className="file-section input-section">
                         <div className="input-items file-input-section">
                             <i className="fas fa-map-marker-alt" style={{ color: "#2e86de" }} ></i>
                             <span style={{ color: "#2e86de" }} className="upload-title label">&ensp;Set Location</span>
